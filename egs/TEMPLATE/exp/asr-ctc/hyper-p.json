@@ -1,0 +1,38 @@
+{
+    "data": {
+        "train": "yesno",
+        "dev": "yesno",
+        "test": "yesno",
+        "filter": "10:2000"
+    },
+    "tokenizer": {
+        "type": "SentencePieceTokenizer",
+        "option-train": {
+            "model_type": "word",
+            "use_all_vocab": true,
+            "vocab_size": 4,
+            "model_prefix": "sentencepiece/yesno_word/spm"
+        }
+    },
+    "env": {
+        "CUDA_VISIBLE_DEVICES": "0"
+    },
+    "train": {
+        "bin": "cat.ctc.train",
+        "option": {
+            "amp": false,
+            "batch_size": 1,
+            "eval_error_rate": true
+        }
+    },
+    "inference": {
+        "infer": {
+            "bin": "cat.ctc.decode",
+            "option": {
+                "beam_size": 16,
+                "nj": 2
+            }
+        },
+        "er": {}
+    }
+}

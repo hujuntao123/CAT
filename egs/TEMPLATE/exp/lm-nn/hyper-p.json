@@ -1,0 +1,47 @@
+{
+    "data": {
+        "train": "data/local-lm/libri-part.train",
+        "dev": "data/local-lm/libri-part.dev",
+        "test": [
+            "data/local-lm/libri-part.dev"
+        ],
+        "packing-text-lm": {
+            "nj": 4,
+            "truncate": 64,
+            "prune_shorter": 4
+        }
+    },
+    "tokenizer": {
+        "type": "SentencePieceTokenizer",
+        "option-train": {
+            "model_type": "word",
+            "vocab_size": 45899,
+            "use_all_vocab": true,
+            "model_prefix": "sentencepiece/lm-word/spm"
+        }
+    },
+    "env": {
+        "CUDA_VISIBLE_DEVICES": "0"
+    },
+    "train": {
+        "bin": "cat.lm.train",
+        "option": {
+            "amp": true,
+            "batching_mode": "batch",
+            "batch_size": 64,
+            "check-freq": 500
+        },
+        "this-is-an-example-of-bucket-batching": {
+            "amp": true,
+            "batching_mode": "bucket",
+            "bucket_size": 4096,
+            "check-freq": 500
+        }
+    },
+    "inference": {
+        "avgmodel": {
+            "mode": "best",
+            "num": 1
+        }
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "data": {
+        "train": "train"
+    },
+    "tokenizer": {
+        "type": "JiebaTokenizer",
+        "option-init": {
+            "userdict": "exp/ctc-crf-cuside/prepare_lexicon/dict.txt"
+        }
+    },
+    "inference": {}
+}

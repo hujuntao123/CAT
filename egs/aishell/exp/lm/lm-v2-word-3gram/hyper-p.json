@@ -1,0 +1,15 @@
+{
+    "data": {
+        "train": "train",
+        "test": [
+            "dev",
+            "test"
+        ],
+        "lang": "zh-cn"
+    },
+    "tokenizer": {
+        "type": "JiebaTokenizer",
+        "option-init": {}
+    },
+    "inference": {}
+}

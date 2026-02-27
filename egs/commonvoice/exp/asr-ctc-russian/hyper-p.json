@@ -1,0 +1,45 @@
+{
+    "data": {
+        "train": "excluded_train",
+        "dev": [
+            "dev"
+        ],
+        "test": [
+            "dev",
+            "test"
+        ],
+        "filter": "10:2000"
+    },
+    "tokenizer": {
+        "type": "SentencePieceTokenizer",
+        "option-train": {
+            "vocab_size": 2000,
+            "model_type": "bpe",
+            "add_dummy_prefix": false,
+            "model_prefix": "sentencepiece/cv_ru/spm"
+        }
+    },
+    "train": {
+        "bin": "cat.ctc.train",
+        "option": {
+            "amp": true,
+            "batch_size": 256,
+            "dynamic_batch_mode": 1,
+            "grad_accum_fold": 2
+        }
+    },
+    "inference": {
+        "avgmodel": {
+            "mode": "best",
+            "num": 10
+        },
+        "infer": {
+            "bin": "cat.ctc.decode",
+            "option": {
+                "beam_size": 32,
+                "nj": 48
+            }
+        },
+        "er": {}
+    }
+}

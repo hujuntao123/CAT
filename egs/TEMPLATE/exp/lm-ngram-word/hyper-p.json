@@ -1,0 +1,18 @@
+{
+    "data": {
+        "train": "data/local-lm/libri-part.train",
+        "test": [
+            "data/local-lm/libri-part.dev"
+        ]
+    },
+    "tokenizer": {
+        "type": "SentencePieceTokenizer",
+        "option-train": {
+            "model_type": "word",
+            "vocab_size": 45899,
+            "use_all_vocab": true,
+            "model_prefix": "sentencepiece/lm-word/spm"
+        }
+    },
+    "inference": {}
+}

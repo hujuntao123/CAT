@@ -1,0 +1,49 @@
+{
+    "data": {
+        "train": [
+            "train-3sp"
+        ],
+        "dev": "dev",
+        "test": [
+            "dev",
+            "test"
+        ],
+        "filter": "10:2000"
+    },
+    "tokenizer": {
+        "type": "SentencePieceTokenizer",
+        "option-train": {
+            "model_type": "char",
+            "vocab_size": 4232,
+            "add_dummy_prefix": false,
+            "use_all_vocab": true,
+            "model_prefix": "sentencepiece/aishell_char/spm"
+        }
+    },
+    "train": {
+        "bin": "cat.ctc.train",
+        "option": {
+            "amp": true,
+            "batch_size": 128,
+            "grad_norm": 2.0,
+            "dynamic_batch_mode": 1,
+            "check_freq": 1000
+        }
+    },
+    "inference": {
+        "avgmodel": {
+            "mode": "best",
+            "num": 20
+        },
+        "infer": {
+            "bin": "cat.ctc.decode",
+            "option": {
+                "beam_size": 32,
+                "nj": 48
+            }
+        },
+        "er": {
+            "cer": true
+        }
+    }
+}

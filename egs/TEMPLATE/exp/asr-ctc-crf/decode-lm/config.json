@@ -1,0 +1,10 @@
+{
+    "decoder": {
+        "type": "NGram",
+        "kwargs": {
+            "f_binlm": "exp/asr-ctc-crf/decode-lm/3gram.bin",
+            "gram_order": 3,
+            "num_classes": 8
+        }
+    }
+}
